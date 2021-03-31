@@ -7,17 +7,28 @@
       <div class="about-grid-container">
         <div class="title">
           <div class="title-content">
-            ABOUT US
+            CONTACT US
           </div>
         </div>
         <div class="about-info">
           <div class="about-info-content">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <div class="address">
+              Address:
+              <a :href="$store.state.contactInfo.addressUrl">{{$store.state.contactInfo.address}}</a>
+            </div>
+            <div class="phone">
+              Phone:
+              <a :href="`tel:${$store.state.contactInfo.phone}`"> {{$store.state.contactInfo.phone}} </a>
+            </div>
+            <div class="mail">
+              Email:
+              <a :href="`mailto:${$store.state.contactInfo.email}`">{{$store.state.contactInfo.email}}</a>
+            </div>
           </div>
         </div>
-        <router-link to="/contact" style="color: #000000" class="button-container" v-if="$store.state.desktopView">
+        <router-link to="/about" style="color: #000000" class="button-container" >
           <button type="button">
-            CONTACT US
+            ABOUT US
           </button>
         </router-link>
       </div>
@@ -27,10 +38,10 @@
 
 <script>
 export default {
-  name: "About",
+  name: "Contact",
   data () {
     return {
-      aboutMobileImageData: 'https://wonderfulengineering.com/wp-content/uploads/2013/11/factory-wallpaper-2.jpg'
+      aboutMobileImageData: 'https://images.alphacoders.com/680/680503.jpg'
     }
   }
 }
@@ -40,7 +51,7 @@ export default {
 
 .about {
   background-color: #ffffff;
-  height: 90vh;
+  height: 100%;
   width: 100%;
 }
 
@@ -56,19 +67,26 @@ export default {
 
 .about-info {
   width: 100%;
-  padding: 1em 2em;
+  padding: 3em 2em;
 }
 
-.button-container {
-  width: 50%;
-  margin: 1em auto;
+.about-info-content {
+  display: grid;
+  grid-template-rows: repeat(3, 4em);
+  justify-items: start;
 }
 
 button {
-  height: 90%;
-  width: 16vw;
   background-color: #FFCE00;
   cursor: pointer;
+  height: 5vh;
+  width: 35vw;
+  margin: 0 auto 5vh;
+}
+
+a {
+  color: #FFCE00;
+  font-weight: bold;
 }
 
 @media (min-width: 990px) {
@@ -78,7 +96,7 @@ button {
     width: 100%;
   }
   .about-info {
-    padding: 2em 5em;
+    padding: 1em 3em;
   }
   .about-grid-container {
     display: grid;
@@ -87,6 +105,15 @@ button {
   }
   img {
     height: 90vh;
+  }
+  .button-container {
+    width: 50%;
+    margin: 1em auto;
+    height: 50%;
+  }
+  button {
+    height: 97%;
+    width: 16vw;
   }
 }
 

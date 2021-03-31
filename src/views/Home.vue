@@ -1,18 +1,43 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="content">
+      <Slider class="slider"/>
+      <OurMarketsIcons />
+      <MarketIcons class="market-icons" v-if="$store.state.desktopView"/>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import Slider from "../components/Slider";
+import OurMarketsIcons from "../components/OurMarketsIcons";
+import MarketIcons from "../components/MarketIcons";
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
-  }
+  components: {MarketIcons, OurMarketsIcons, Slider},
 }
 </script>
+
+<style>
+
+@media (min-width: 990px) {
+  .slider {
+    position: relative;
+    height: 100vh;
+    background-color: black;
+  }
+  .market-icons {
+    position: fixed;
+    top: 20%;
+    right: 0;
+    left: 40%;
+    z-index: 98;
+
+    color: white;
+    margin-bottom: 100px;
+  }
+}
+
+
+
+</style>
