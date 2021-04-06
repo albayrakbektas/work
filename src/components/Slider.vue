@@ -37,7 +37,7 @@ export default {
 }
 
 .slide {
-  display: block;
+  display: inline-block;
   height: 57vh;
   background-color: #666666;
   object-fit: cover;
@@ -118,6 +118,9 @@ img {
   }
   .agile__nav-button {
     margin: 45vh auto;
+  }
+  img {
+    width: 100%;
   }
 }
 

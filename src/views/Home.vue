@@ -21,9 +21,13 @@ export default {
 <style>
 
 @media (min-width: 990px) {
+  .home {
+    width: 100vw;
+  }
   .slider {
     position: relative;
     height: 100vh;
+    width: 100%;
     background-color: black;
   }
   .market-icons {

@@ -61,8 +61,8 @@ name: "MarketIcons"
 .icon-radius-container {
   display: grid;
   align-items: center;
-  height: 60%;
-  width: 40%;
+  height: 80%;
+  width: 80%;
   border-radius: 50%;
   background-color: #ffcd21;
 }
@@ -82,6 +82,7 @@ name: "MarketIcons"
     height: 80%;
     width: 70%;
     align-content: space-around;
+    border-radius: 50%;
   }
 }
 

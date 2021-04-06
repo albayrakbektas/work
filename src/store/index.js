@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    fullScreenActive: Boolean,
+    fullScreenActive: false,
     fullScreenImgUrl: 'https://productimages.hepsiburada.net/s/39/375/10641044766770.jpg',
     navIsOpen: false,
     desktopView: window.innerWidth > 990,

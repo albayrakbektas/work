@@ -1,16 +1,14 @@
 <template>
   <div class="industrial">
     <SecondHeader>INDUSTRIAL</SecondHeader>
-    <SingleProduct />
   </div>
 </template>
 
 <script>
 import SecondHeader from "../components/SecondHeader";
-import SingleProduct from "../components/SingleProduct";
 export default {
   name: "Industrial",
-  components: {SingleProduct, SecondHeader}
+  components: {SecondHeader}
 }
 </script>
 
@@ -20,5 +18,6 @@ export default {
   background-color: #ffffff;
   display: inline-block;
   padding-bottom: 100px;
+  width: 100%;
 }
 </style>

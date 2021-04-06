@@ -19,7 +19,7 @@ export default {
 
 .full-screen-image {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   position: relative;
   top: 0;
   left: 0;
