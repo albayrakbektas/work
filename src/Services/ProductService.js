@@ -9,7 +9,6 @@ export class ProductService {
         return new  Promise((resolve, reject) => {
             db.ref('product/building/').on('value', (snap) => {
                 const data = snap.val()
-
                 if(data !== null){
                     return resolve(Object.keys(data).map(key => {
                         return {
@@ -24,7 +23,44 @@ export class ProductService {
                 }
             })
         })
-
+    }
+    static async getMiningProduct() {
+        return new  Promise((resolve, reject) => {
+            db.ref('product/mining/').on('value', (snap) => {
+                const data = snap.val()
+                if(data !== null){
+                    return resolve(Object.keys(data).map(key => {
+                        return {
+                            id: key,
+                            brand: data[key].brand,
+                            code: data[key].code,
+                            url: ''
+                        }
+                    }))
+                } else {
+                    reject('error')
+                }
+            })
+        })
+    }
+    static async getIndustrialProduct() {
+        return new  Promise((resolve, reject) => {
+            db.ref('product/industrial/').on('value', (snap) => {
+                const data = snap.val()
+                if(data !== null){
+                    return resolve(Object.keys(data).map(key => {
+                        return {
+                            id: key,
+                            brand: data[key].brand,
+                            code: data[key].code,
+                            url: ''
+                        }
+                    }))
+                } else {
+                    reject('error')
+                }
+            })
+        })
     }
 
 

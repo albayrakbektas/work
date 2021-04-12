@@ -2,8 +2,8 @@
   <div class="header" :class="{'isNotHome': isHomePage && $store.state.desktopView}">
     <div class="brand">
       <div class="brand-logo">
-        <a href="/" style="color: black">
-          BRAND LOGO
+        <a href="/">
+          <img src="../assets/brand-logo.png" alt="brand-logo">
         </a>
       </div>
     </div>
@@ -14,29 +14,37 @@
         </span>
       </div>
     </div>
+    <div class="language" v-if="!$store.state.desktopView">
+      <div @click="setLanguage('en')">EN</div>
+      <div @click="setLanguage('tr')">TR</div>
+      <div @click="setLanguage('tr')">FR</div>
+    </div>
     <div class="navbar" v-if="$store.state.desktopView"  >
       <div class="navbar-routes">
         <div class="rotues">
-          <router-link to="/">HOME</router-link>
+          <router-link to="/">{{$store.getters.getLangItem('home')}}</router-link>
         </div>
         <div class="rotues">
-          <router-link class="routes" to="/building">BUILDING</router-link>
+          <router-link class="routes" to="/building">{{$store.getters.getLangItem('building')}}</router-link>
         </div>
         <div class="rotues">
-          <router-link class="routes" to="/industrial">INDUSTRIAL</router-link>
+          <router-link class="routes" to="/industrial">{{$store.getters.getLangItem('industrial')}}</router-link>
         </div>
         <div class="rotues">
-          <router-link class="routes" to="/mining">MINING</router-link>
+          <router-link class="routes" to="/mining">{{$store.getters.getLangItem('mining')}}</router-link>
         </div>
         <div class="rotues">
-          <router-link class="routes" to="/about">ABOUT US</router-link>
+          <router-link class="routes" to="/about">{{$store.getters.getLangItem('about')}}</router-link>
         </div>
         <div class="rotues">
-          <router-link class="routes" to="/contact">CONTACT US</router-link>
+          <router-link class="routes" to="/contact">{{$store.getters.getLangItem('contact')}}</router-link>
         </div>
-        <div class="languages">EN | TR | SW </div>
+        <div class="languages">
+          <div @click="setLanguage('en')">EN</div>
+          <div @click="setLanguage('tr')">TR</div>
+          <div @click="setLanguage('tr')">FR</div>
+        </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -52,7 +60,12 @@ export default {
   methods: {
     toggle () {
       this.$store.state.navIsOpen = !this.$store.state.navIsOpen
-    }
+    },
+    setLanguage(lang) {
+      localStorage.setItem('language', lang)
+      location.reload()
+    },
+
   },
   computed: {
     isHomePage () {
@@ -66,13 +79,17 @@ export default {
 
 .header {
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 6fr 1fr 1fr;
   align-items: center;
 
   position: relative;
   height: 72px;
-  background-color: #333;
+  background-color: #ffffff;
   line-height: 1.5;
+}
+
+img {
+  height: 72px;
 }
 
 .brand {
@@ -82,7 +99,6 @@ export default {
 
 .brand-logo {
   display: grid;
-  align-items: center;
   background-color: #ffffff;
   height: 72px;
   width: 179px;
@@ -109,6 +125,9 @@ export default {
     background-color: rgba(120, 120, 120, .4);
     grid-template-columns: 1fr 6fr;
   }
+  .brand-logo {
+    background-color: transparent;
+  }
 }
 
 .isNotHome {
@@ -128,6 +147,13 @@ export default {
 .navbar-routes {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+}
+
+.languages {
+  display: grid;
+  grid-template-columns: repeat(3, 2vw);
+  margin-left: 4vw;
+  cursor: pointer;
 }
 
 </style>

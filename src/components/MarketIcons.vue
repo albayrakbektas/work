@@ -8,7 +8,7 @@
         </span>
         </div>
         <div class="icons-title">
-          Carpenter
+          {{$store.getters.getLangItem('industrial')}}
         </div>
       </router-link>
       <router-link class="icon-radius-container" to="/mining">
@@ -18,7 +18,7 @@
         </span>
         </div>
         <div class="icons-title">
-          Mining
+          {{$store.getters.getLangItem('mining')}}
         </div>
       </router-link>
       <router-link class="icon-radius-container" to="/building">
@@ -28,7 +28,7 @@
         </span>
         </div>
         <div class="icons-title">
-          Building
+          {{$store.getters.getLangItem('building')}}
         </div>
       </router-link>
     </div>

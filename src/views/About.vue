@@ -7,7 +7,7 @@
       <div class="about-grid-container">
         <div class="title">
           <div class="title-content">
-            ABOUT US
+            {{$store.getters.getLangItem('about')}}
           </div>
         </div>
         <div class="about-info">
@@ -17,7 +17,7 @@
         </div>
         <router-link to="/contact" style="color: #000000" class="button-container" v-if="$store.state.desktopView">
           <button type="button">
-            CONTACT US
+            {{$store.getters.getLangItem('contact')}}
           </button>
         </router-link>
       </div>

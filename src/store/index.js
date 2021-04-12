@@ -5,6 +5,40 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    currentLanguage: localStorage.getItem('language') || 'tr',
+    language: {
+      tr: {
+        home: 'Ana Sayfa',
+        building: 'İnşaat',
+        industrial: 'Endüstri',
+        mining: 'Maden',
+        about: 'Hakkımızda',
+        contact: 'İletişim',
+        markets: 'Sektörler',
+        brand: 'Marka',
+        code: 'Kod',
+        link: 'Hızlı Erişim',
+        address: 'Adres',
+        phone: "Telefon"
+      },
+      en: {
+        home: 'Home',
+        building: 'Building',
+        industrial: 'Industrial',
+        mining: 'Mining',
+        about: 'About Us',
+        contact: 'Contact',
+        markets: 'Markets',
+        brand: 'Brand',
+        code: 'Code',
+        link: 'Quick Links',
+        address: 'Address',
+        phone: 'Phone',
+      }
+    },
+
+
+
     fullScreenActive: false,
     fullScreenImgUrl: 'https://productimages.hepsiburada.net/s/39/375/10641044766770.jpg',
     navIsOpen: false,
@@ -23,6 +57,9 @@ export default new Vuex.Store({
   modules: {
   },
   getters: {
-    navIsActive: state => state.navIsOpen
+    navIsActive: state => state.navIsOpen,
+    getLangItem:(state) => (key) => {
+      return state.language[state.currentLanguage][key]
+    }
   }
 })

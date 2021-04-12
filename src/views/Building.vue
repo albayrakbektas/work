@@ -1,6 +1,7 @@
 <template>
   <div class="building">
-    <SecondHeader>BUILDING</SecondHeader>
+    <SecondHeader>          {{$store.getters.getLangItem('building')}}
+    </SecondHeader>
     <ProductList :product-list="productList" />
   </div>
 </template>
@@ -17,35 +18,29 @@ export default {
   data () {
     return {
       productList: [],
-      exUrl: '',
     }
   },
   async mounted () {
-    this.productList = await ProductService.getBuildingProduct()
-    console.log(this.productList);
+      this.productList = await ProductService.getBuildingProduct()
     this.getFile()
   },
   methods: {
     getFile () {
       let myArray = this.productList.map(x => x)
-      console.log(myArray);
       if(myArray !== null) {
         return Object.keys(this.productList).map(key => {
           let myRef = fs.ref('/building/'+myArray[key].code)
           myRef.getDownloadURL()
               .then((url) => {
-                console.log(this.productList);
                 this.productList[key].url = url
-                console.log(this.productList);
               })
           return {
             url: this.productList.url
           }
         })
       }
-
-      }
     }
+  }
 }
 </script>
 

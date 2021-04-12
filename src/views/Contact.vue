@@ -7,17 +7,17 @@
       <div class="about-grid-container">
         <div class="title">
           <div class="title-content">
-            CONTACT US
+            {{$store.getters.getLangItem('contact')}}
           </div>
         </div>
         <div class="about-info">
           <div class="about-info-content">
             <div class="address">
-              Address:
+              {{ $store.getters.getLangItem('address') }}:
               <a :href="$store.state.contactInfo.addressUrl">{{$store.state.contactInfo.address}}</a>
             </div>
             <div class="phone">
-              Phone:
+              {{ $store.getters.getLangItem('phone') }}:
               <a :href="`tel:${$store.state.contactInfo.phone}`"> {{$store.state.contactInfo.phone}} </a>
             </div>
             <div class="mail">
@@ -28,7 +28,7 @@
         </div>
         <router-link to="/about" style="color: #000000" class="button-container" >
           <button type="button">
-            ABOUT US
+            {{$store.getters.getLangItem('about')}}
           </button>
         </router-link>
       </div>

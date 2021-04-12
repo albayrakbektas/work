@@ -4,8 +4,8 @@
       <img :src="product.url" alt="..">
     </div>
     <div class="description">
-      <AttributeValue name="Marka :" :value="product.brand" />
-      <AttributeValue name="Code :" :value="product.code" />
+      <AttributeValue :name="`${$store.getters.getLangItem('brand')} :`" :value="product.brand" />
+      <AttributeValue :name="`${$store.getters.getLangItem('code')} :`" :value="product.code" />
     </div>
   </div>
 </template>

@@ -3,30 +3,29 @@
     <div class="short-cut">
       <div class="short-cut-button" v-if="$route.path !== '/contact'" @click="toggleContact">
         <div class="short-cut-text">
-          CONTACT US
+          {{$store.getters.getLangItem('contact')}}
         </div>
       </div>
       <div class="short-cut-text-content" v-if="isContact && $route.path !== '/contact'" style="transition: 1s">
         <div class="a-selecter">
-          <div>ADDRESS: <a :href="$store.state.contactInfo.addressUrl">{{$store.state.contactInfo.address}}</a>
+          <div>{{ $store.getters.getLangItem('address') }}:  <a :href="$store.state.contactInfo.addressUrl">{{$store.state.contactInfo.address}}</a>
           </div> <br>
-          <p>PHONE: <a :href="`tel:${$store.state.contactInfo.phone}`"> {{$store.state.contactInfo.phone}} </a>  <br> <br>
+          <p>{{ $store.getters.getLangItem('phone') }}:   <a :href="`tel:${$store.state.contactInfo.phone}`"> {{$store.state.contactInfo.phone}} </a>  <br> <br>
             EMAIL: <a :href="`mailto:${$store.state.contactInfo.email}`">{{$store.state.contactInfo.email}}</a> </p>
         </div>
       </div>
       <div class="short-cut-button" @click="toggleLink">
         <div class="short-cut-text">
-          QUICK LINKS
+          {{$store.getters.getLangItem('link')}}
         </div>
       </div>
       <div class="short-cut-text-content" v-if="isLinks" style="transition: 1s">
           <ul @click="toggleLink">
-            <li><router-link to="/" style="color: #ffcd21">Home</router-link></li>
-            <li><router-link to="/building">BUILDING</router-link></li>
-            <li><router-link to="/industrial">INDUSTRIAL</router-link></li>
-            <li><router-link to="/mining">MINING</router-link></li>
-            <li><router-link to="/about" style="color: white !important;">ABOUT US</router-link></li>
-            <li><router-link to="/contact">CONTACT US</router-link></li>
+            <li class="home"><router-link to="/">{{$store.getters.getLangItem('home')}}</router-link></li>
+            <li><router-link to="/building">{{$store.getters.getLangItem('building')}}</router-link></li>
+            <li><router-link to="/industrial">{{$store.getters.getLangItem('industrial')}}</router-link></li>
+            <li><router-link to="/mining">{{$store.getters.getLangItem('mining')}}</router-link></li>
+            <li><router-link to="/about">{{$store.getters.getLangItem('about')}}</router-link></li>
           </ul>
       </div>
     </div>

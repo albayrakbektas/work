@@ -1,6 +1,6 @@
 <template>
   <div class="mining">
-    <SecondHeader>MINING</SecondHeader>
+    <SecondHeader>{{$store.getters.getLangItem('mining')}}</SecondHeader>
     <ProductList :product-list="productList" />
   </div>
 </template>
@@ -10,6 +10,7 @@ import '../Services/ProductService'
 import SecondHeader from "../components/SecondHeader";
 import ProductList from "../components/ProductList";
 import {ProductService} from "../Services/ProductService";
+import {fs} from "../../firebaseConfig";
 
 export default {
   name: "Mining",
@@ -19,9 +20,26 @@ export default {
       productList: []
     }
   },
-  async created() {
-      this.productList = await ProductService.getBuildingProduct()
-      console.log(this.productList);
+  async mounted () {
+    this.productList = await ProductService.getMiningProduct()
+    this.getFile()
+  },
+  methods: {
+    getFile () {
+      let myArray = this.productList.map(x => x)
+      if(myArray !== null) {
+        return Object.keys(this.productList).map(key => {
+          let myRef = fs.ref('/mining/'+myArray[key].code)
+          myRef.getDownloadURL()
+              .then((url) => {
+                this.productList[key].url = url
+              })
+          return {
+            url: this.productList.url
+          }
+        })
+      }
+    }
   }
 }
 

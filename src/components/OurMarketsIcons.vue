@@ -2,7 +2,7 @@
   <div class="markets" v-if="!$store.state.desktopView">
     <div class="markets-title">
       <div class="markets-text">
-        OUR MARKETS
+        {{$store.getters.getLangItem('markets')}}
       </div>
     </div>
     <div class="markets-icon-area">
