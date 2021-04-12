@@ -9,7 +9,7 @@
 <script>
 import SecondHeader from "../components/SecondHeader";
 import ProductList from "../components/ProductList";
-import {ProductService} from "../Services/ProductService";
+import {ProductService} from "@/Services/ProductService";
 import { fs } from "../../firebaseConfig";
 
 export default {
