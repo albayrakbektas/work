@@ -20,11 +20,15 @@ export default {
 </script>
 
 <style scoped>
-
 .attribute {
+  font-size: 25px;
+  width: 100%;
+  padding: 5px;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: 1rem;
 }
-
+.value{
+  text-align: start;
+}
 </style>

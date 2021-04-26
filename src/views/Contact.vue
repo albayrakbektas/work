@@ -12,84 +12,119 @@
         </div>
         <div class="about-info">
           <div class="about-info-content">
-            <div class="address">
-              {{ $store.getters.getLangItem('address') }}:
-              <a :href="$store.state.contactInfo.addressUrl">{{$store.state.contactInfo.address}}</a>
+            <div class="address attr">
+              <span>
+                <strong>{{ $store.getters.getLangItem('address') }}:</strong>
+              </span>
+              <br>
+              <a :href="map" target="_blank">{{address}}</a>
             </div>
-            <div class="phone">
-              {{ $store.getters.getLangItem('phone') }}:
-              <a :href="`tel:${$store.state.contactInfo.phone}`"> {{$store.state.contactInfo.phone}} </a>
+            <div class="phone attr">
+              <strong>{{ $store.getters.getLangItem('phone') }}:</strong>
+              <br>
+              <a :href="`tel:${phone}`"> {{phone}} </a>
             </div>
-            <div class="mail">
-              Email:
-              <a :href="`mailto:${$store.state.contactInfo.email}`">{{$store.state.contactInfo.email}}</a>
+            <div class="mail attr">
+              <strong>Email:</strong>
+              <br>
+              <a :href="`mailto:${email}`">{{email}}</a>
             </div>
           </div>
         </div>
-        <router-link to="/about" style="color: #000000" class="button-container" >
-          <button type="button">
-            {{$store.getters.getLangItem('about')}}
-          </button>
-        </router-link>
+        <div class="button-container" >
+          <router-link to="/about" style="color: #000000" >
+            <button type="button">
+              {{$store.getters.getLangItem('about')}}
+            </button>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {db} from '../../firebaseConfig'
 export default {
   name: "Contact",
   data () {
     return {
-      aboutMobileImageData: 'https://images.alphacoders.com/680/680503.jpg'
+      aboutMobileImageData: 'https://images.alphacoders.com/680/680503.jpg',
+      address: null,
+      map: null,
+      phone: null,
+      email: null,
+      imgSrc: null,
+    }
+  },
+  async mounted() {
+    await this.getData()
+  },
+  methods: {
+    getData () {
+      db.ref('/contact/').on('value', (snapshot) => {
+        const data = snapshot.val()
+        this.address = data.address
+        this.map = data.map
+        this.phone = data.phone
+        this.email = data.email
+      })
     }
   }
 }
 </script>
 
 <style scoped>
-
 .about {
   background-color: #ffffff;
   height: 100%;
   width: 100%;
+  word-wrap: break-word;
 }
-
 .title {
+  font-weight: bolder;
   height: 10vh;
   width: 100%;
 }
-
 .title-content {
   margin: .3em 0;
   font-size: 4rem;
 }
-
 .about-info {
   width: 100%;
-  padding: 3em 2em;
+  padding: 1em 2em;
 }
-
 .about-info-content {
   display: grid;
   grid-template-rows: repeat(3, 4em);
   justify-items: start;
+  text-align: start;
 }
-
+.about-info-content strong{
+  font-size: 25px;
+}
 button {
   background-color: #FFCE00;
   cursor: pointer;
   height: 5vh;
-  width: 35vw;
-  margin: 0 auto 5vh;
+  width: 40vw;
+  margin: 6vh auto 5vh;
+  font-size: 30px !important;
 }
-
 a {
   color: #FFCE00;
   font-weight: bold;
 }
-
+a:hover {
+  font-size: 1.2rem;
+}
+.attr{
+  margin: 50px 0;
+}
 @media (min-width: 990px) {
+  .about {
+    max-width: 100vw
+  }
   .about-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -100,21 +135,22 @@ a {
   }
   .about-grid-container {
     display: grid;
-    grid-template-rows: 2fr 6fr 1fr;
-    height: 80vh;
+    grid-template-rows: 10vh 65vh 20vh;
+    height: 90vh;
+    max-width: 40vw
   }
   img {
-    height: 90vh;
+    height: calc(100vh - 72px);
+    object-fit: cover;
   }
   .button-container {
     width: 50%;
-    margin: 1em auto;
+    margin: 1rem auto;
     height: 50%;
   }
   button {
-    height: 97%;
+    height: 80%;
     width: 16vw;
   }
 }
-
 </style>

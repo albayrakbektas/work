@@ -14,13 +14,11 @@
 </template>
 
 <style lang="scss">
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 #app {
   font-family: Arial, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -28,27 +26,21 @@
   text-align: center;
   height: 100%;
 }
-
 body {
   width: 100%;
   height: 100%;
 }
-
 .content {
   position: relative;
-  transition: 1.5s;
+  transition: 1s;
 }
-
 .navigation {
   position: absolute;
   margin-left: calc(100% - 100px);
 }
-
-
 .active {
   transform: translateX(-200px);
 }
-
 a {
   color: #ffffff;
   text-decoration: none;
@@ -56,19 +48,19 @@ a {
 a:hover {
   color: #FFCE00;
 }
-
-
-.router-link-active {
-  color: #ffcd21 !important;
+.routes{
+  font-size: 20px;
+  font-weight: bold;
 }
-
+.router-link-exact-active {
+  color: #ffcd21 !important;
+  font-weight: bolder;
+  font-size: 20px;
+}
 .navIsClosed {
   height: 100vh;
   width: 100vw;
 }
-
-
-
 </style>
 <script>
 import Navigation from "./components/Navigation";
@@ -76,6 +68,7 @@ import Shortcuts from "./components/Shortcuts";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import FullScreenImg from "./components/FullScreenImg";
+import {ProductService} from "@/Services/ProductService";
 export default {
   name: 'app',
   components: {FullScreenImg, Header, Footer, Shortcuts, Navigation},
@@ -84,9 +77,10 @@ export default {
       this.$store.state.navIsOpen = false
     }
   },
-  created() {
+  async created() {
     this.handleView()
     window.addEventListener('resize', this.handleView)
+    this.$store.commit('setSectorList',await ProductService.getListAsDictionary())
   }
 }
 </script>

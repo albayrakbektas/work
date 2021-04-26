@@ -1,23 +1,75 @@
 <template>
   <div class="navigation" v-if="!$store.state.desktopView" :lang="$store.state.currentLanguage">
+    <div class="language">
+      <div class="lang" @click="setLanguage('en')">
+        <country-flag country='gb' size='medium'/>
+      </div>
+      <div class="lang" @click="setLanguage('tr')">
+        <country-flag country='tr' size='medium'/>
+      </div>
+      <div class="lang" @click="setLanguage('de')">
+        <country-flag country='de' size='medium'/>
+      </div>
+    </div>
     <ul @click="$store.state.navIsOpen = false">
+<!--      <li class="flags">-->
+<!--        <country-flag country='gb' size='medium' @click="setLanguage('en')"/>-->
+<!--        <country-flag country='tr' size='medium' @click="setLanguage('tr')"/>-->
+<!--        <country-flag country='de' size='medium' @click="setLanguage('de')"/>-->
+<!--      </li>-->
       <li class="home"><router-link to="/">{{$store.getters.getLangItem('home')}}</router-link></li>
-      <li><router-link to="/building">{{$store.getters.getLangItem('building')}}</router-link></li>
-      <li><router-link to="/industrial">{{$store.getters.getLangItem('industrial')}}</router-link></li>
-      <li><router-link to="/mining">{{$store.getters.getLangItem('mining')}}</router-link></li>
+      <li class="rotues" v-for="(item,index) in sectorList" :key="index">
+        <router-link class="routes" :to="`/sectors${item.path}`" @click="location.reload()">
+          {{item.name[$store.state.currentLanguage]}}
+        </router-link>
+      </li>
+<!--      <li><router-link to="/sectors/building">{{$store.getters.getLangItem('building')}}</router-link></li>-->
+<!--      <li><router-link to="/sectors/turisim">{{$store.getters.getLangItem('tourism')}}</router-link></li>-->
       <li><router-link to="/about">{{$store.getters.getLangItem('about')}}</router-link></li>
       <li><router-link to="/contact">{{$store.getters.getLangItem('contact')}}</router-link></li>
+
     </ul>
   </div>
 </template>
 
 <script>
+import {ProductService} from "@/Services/ProductService";
+
 export default {
-  name: "Navigation"
+  name: "Navigation",
+  data () {
+    return {
+      navIsOpen: false,
+      sectorList:[],
+      isMenu:false
+    }
+  },
+  computed: {
+    isHomePage () {
+      return this.$route.path !== '/'
+    }
+  },
+  async created() {
+    this.sectorList = await ProductService.readSectors()
+  },
+  methods: {
+    setLanguage(lang) {
+      localStorage.setItem('language', lang)
+      location.reload()
+    }
+  }
 }
 </script>
 
 <style scoped>
+
+.language {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: 2rem;
+  margin-top: .8rem;
+
+}
 
 .navigation {
   height: 100vh;
@@ -47,6 +99,10 @@ a {
 
 li a:hover {
   text-decoration: none;
+}
+.routes {
+  font-weight: normal;
+  font-size: 1rem;
 }
 
 </style>

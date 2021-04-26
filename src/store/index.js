@@ -6,6 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentLanguage: localStorage.getItem('language') || 'tr',
+    sectorList:{
+
+    },
     language: {
       tr: {
         home: 'Ana Sayfa',
@@ -19,7 +22,9 @@ export default new Vuex.Store({
         code: 'Kod',
         link: 'Hızlı Erişim',
         address: 'Adres',
-        phone: "Telefon"
+        phone: "Telefon",
+        sector: "Sektörler",
+        tourism: "Turizm",
       },
       en: {
         home: 'Home',
@@ -34,11 +39,28 @@ export default new Vuex.Store({
         link: 'Quick Links',
         address: 'Address',
         phone: 'Phone',
+        sector: "Sectors",
+        tourism: "Tourism",
+
+      },
+      de: {
+        home: 'Haus',
+        building: 'Gebäude',
+        industrial: 'Industriell',
+        mining: 'Bergbau',
+        about: 'Uber uns',
+        contact: 'Kontakt',
+        markets: 'Mårkte',
+        brand: 'Marke',
+        code: 'Code',
+        link: 'Quicklinks',
+        address: 'Adresse',
+        phone: 'Telefon',
+        sector: "Sektoren",
+        tourism: "Tourismus",
+
       }
     },
-
-
-
     fullScreenActive: false,
     fullScreenImgUrl: 'https://productimages.hepsiburada.net/s/39/375/10641044766770.jpg',
     navIsOpen: false,
@@ -51,6 +73,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setSectorList(state,sectorList){
+      state.sectorList = sectorList
+    }
   },
   actions: {
   },
@@ -60,6 +85,9 @@ export default new Vuex.Store({
     navIsActive: state => state.navIsOpen,
     getLangItem:(state) => (key) => {
       return state.language[state.currentLanguage][key]
+    },
+    getSectorItem:(state) => (key) => {
+      return state.sectorList[key][state.currentLanguage]
     }
   }
 })

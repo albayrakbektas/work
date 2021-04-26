@@ -5,9 +5,36 @@ import 'firebase/storage'
 import { db } from '../../firebaseConfig'
 
 export class ProductService {
-    static async getBuildingProduct() {
+    static async readSectors(){
+        return await new Promise(resolve => {
+            db.ref("sector").once("value").then(s=>{
+                let data = s.val();
+                if(data !== null){
+                    resolve(Object.keys(data).map(s=> {
+                        let obj = data[s]
+                        obj.sectorID = s
+                        return obj
+                    }));
+                }
+                else {
+                    resolve([])
+                }
+            })
+        });
+    }
+
+    static async getListAsDictionary(){
+        let data = await ProductService.readSectors()
+        let dict = {};
+        for(let sector of data){
+            dict[sector.path.replace("/","")] = sector.name
+        }
+        return dict
+    }
+
+    static async getProduct(sector) {
         return new  Promise((resolve, reject) => {
-            db.ref('product/building/').on('value', (snap) => {
+            db.ref(`product/${sector}/`).on('value', (snap) => {
                 const data = snap.val()
                 if(data !== null){
                     return resolve(Object.keys(data).map(key => {
@@ -24,6 +51,7 @@ export class ProductService {
             })
         })
     }
+
     static async getMiningProduct() {
         return new  Promise((resolve, reject) => {
             db.ref('product/mining/').on('value', (snap) => {

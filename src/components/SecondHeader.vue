@@ -11,20 +11,19 @@
 
 <script>
 export default {
-name: "SecondHeader"
+  name: "SecondHeader"
 }
 </script>
 
 <style scoped>
-
 .second-header {
   text-align: left !important;
 }
-
 img {
   height: 10vh;
   width: 100%;
   position: absolute;
+  object-fit: cover;
 }
 @media (min-width: 990px) {
   .second-header {
@@ -38,12 +37,10 @@ img {
     font-size: 3rem;
   }
 }
-
 .second-header {
   height: 10vh;
   width: 100%;
 }
-
 .content {
   display: grid;
   height: 100%;
@@ -52,7 +49,7 @@ img {
   position: relative;
 }
 h1 {
-  color: #FFCE00;
+  color: #fff;
+  text-shadow: 0 3px 5px #111;
 }
-
 </style>

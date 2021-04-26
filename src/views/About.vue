@@ -7,17 +7,17 @@
       <div class="about-grid-container">
         <div class="title">
           <div class="title-content">
-            {{$store.getters.getLangItem('about')}}
+            {{ $store.getters.getLangItem('about') }}
           </div>
         </div>
         <div class="about-info">
           <div class="about-info-content">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          {{aboutText}}
           </div>
         </div>
         <router-link to="/contact" style="color: #000000" class="button-container" v-if="$store.state.desktopView">
           <button type="button">
-            {{$store.getters.getLangItem('contact')}}
+            {{ $store.getters.getLangItem('contact') }}
           </button>
         </router-link>
       </div>
@@ -26,17 +26,33 @@
 </template>
 
 <script>
+import {db} from "../../firebaseConfig";
+
 export default {
   name: "About",
-  data () {
+  data() {
     return {
-      aboutMobileImageData: 'https://wonderfulengineering.com/wp-content/uploads/2013/11/factory-wallpaper-2.jpg'
+      aboutMobileImageData: 'https://wonderfulengineering.com/wp-content/uploads/2013/11/factory-wallpaper-2.jpg',
+      aboutText: '',
+    }
+  },
+  async created() {
+    await this.getAboutText()
+  },
+  methods: {
+    getAboutText () {
+      db.ref('/about/' + this.$store.state.currentLanguage).on('value',(snapshot) => {
+        this.aboutText = snapshot.val()
+      })
     }
   }
 }
 </script>
 
 <style scoped>
+img {
+  object-fit: cover;
+}
 
 .about {
   background-color: #ffffff;
@@ -47,21 +63,33 @@ export default {
 .title {
   height: 10vh;
   width: 100%;
+  font-weight: bolder;
 }
 
 .title-content {
-  margin: .3em 0;
+  text-align: start;
+  /*margin: .3em 0;*/
   font-size: 4rem;
 }
 
 .about-info {
+  text-align: start;
   width: 100%;
-  padding: 1em 2em;
+  /*padding: 1em 2em;*/
+}
+
+.about-info-content {
+  word-wrap: break-word;
 }
 
 .button-container {
   width: 50%;
-  margin: 1em auto;
+  justify-self: center;
+  /*margin: 1em auto;*/
+}
+
+.about-grid-container {
+  padding: 20px;
 }
 
 button {
@@ -69,6 +97,7 @@ button {
   width: 16vw;
   background-color: #FFCE00;
   cursor: pointer;
+  font-size: 30px;
 }
 
 @media (min-width: 990px) {
@@ -77,17 +106,22 @@ button {
     grid-template-columns: 2fr 1fr;
     width: 100%;
   }
-  .about-info {
-    padding: 2em 5em;
+  .about-info-content {
+    padding-top: 2rem;
+    font-size: 1rem;
+    word-wrap: break-word;
+  }
+  button {
+    margin-top: 2.7rem;
+    height: 40%;
   }
   .about-grid-container {
     display: grid;
-    grid-template-rows: 2fr 6fr 1fr;
-    height: 80vh;
-  }
-  img {
+    grid-template-rows: 10vh 65vh 20vh;
     height: 90vh;
   }
+  img {
+    height: calc(100vh - 72px);
+  }
 }
-
 </style>

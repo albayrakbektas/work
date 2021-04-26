@@ -4,6 +4,9 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import VueAgile from 'vue-agile'
+import CountryFlag from 'vue-country-flag'
+
+Vue.component('country-flag', CountryFlag)
 
 Vue.use(VueAgile)
 
