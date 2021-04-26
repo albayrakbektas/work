@@ -1,7 +1,7 @@
 <template>
-  <div class="product">
+  <div class="product" @click="isFullScreen === false">
     <div class="photo" @click="changeSize">
-      <img :src="product.url" alt=".." :class="isFullScreen ? 'img' : 'full-screen-image' ">
+      <img :src="product.url" alt="..">
     </div>
     <div class="description">
       <hr>
@@ -10,6 +10,7 @@
       <AttributeValue :name="`${$store.getters.getLangItem('code')} :`" :value="product.code" />
       <hr>
     </div>
+    <img :src="product.largeImageUrl" alt="" @click="changeSize" :class="isFullScreen ? 'large-image' : 'full-screen-image'">
   </div>
 </template>
 
@@ -50,6 +51,7 @@ export default {
 img {
   height: 30vh;
   width: 30vh;
+  cursor: pointer;
 }
 hr{
   width: 100%;
@@ -62,15 +64,27 @@ hr{
 .full-screen-image {
   object-fit: fill;
   display: grid;
-  align-self: center;
-  justify-items: center;
   position: fixed;
   top: 0;
-  bottom: 0;
-  right: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
-  margin: 0 auto;
+  right: 0;
+  height: 80%;
+  width: 70%;
+  margin: 10vh auto;
+  cursor: pointer;
 }
+
+.large-image {
+  display: none;
+  cursor: pointer;
+}
+
+@media (max-width: 990px) {
+  .full-screen-image {
+    margin: 50% auto;
+    height: 50%;
+    width: 100%;
+  }
+}
+
 </style>

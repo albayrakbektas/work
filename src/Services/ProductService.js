@@ -42,7 +42,8 @@ export class ProductService {
                             id: key,
                             brand: data[key].brand,
                             code: data[key].code,
-                            url: ''
+                            url: '',
+                            largeImageUrl: ''
                         }
                     }))
                 } else {

@@ -34,13 +34,19 @@ export default {
       let myArray = this.productList.map(x => x)
       if(myArray !== null) {
         return Object.keys(this.productList).map(key => {
-          let myRef = fs.ref(`/${this.$route.params.id}/`+myArray[key].code)
+          let myRef = fs.ref(`/${this.$route.params.id}/` + myArray[key].code + '/small')
+          let myLargeImageRef = fs.ref(`/${this.$route.params.id}/` + myArray[key].code + '/large')
           myRef.getDownloadURL()
               .then((url) => {
                 this.productList[key].url = url
               })
+          myLargeImageRef.getDownloadURL()
+              .then((url) => {
+                this.productList[key].largeImageUrl = url
+              })
           return {
-            url: this.productList.url
+            url: this.productList.url,
+            largeImageUrl: this.productList.largeImageUrl
           }
         })
       }
