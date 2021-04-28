@@ -159,17 +159,19 @@ img {
 }
 .drop-down-menu{
   position: absolute;
-  background-color: white;
+  //background-color: white;
   color: dodgerblue;
-  padding: 5px;
+  margin-left: 3rem;
+
 }
 .drop-down-menu div{
-  padding: 30px;
-  background-color: rgba(3,3,3,0.4);
+  padding: 10px;
+  background-color: rgba(3,3,3,0.3);
   transition: 1s;
+  border: 1px solid #ffcd21;
 }
 .drop-down-menu div:hover{
-  background-color: rgba(3,3,3,0.8);
+  background-color: rgba(3,3,3,0.6);
   color: #ffcd21 !important;
   cursor: pointer;
 }
