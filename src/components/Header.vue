@@ -169,6 +169,7 @@ img {
   background-color: rgba(3,3,3,0.3);
   transition: 1s;
   border: 1px solid #ffcd21;
+  width: 10rem;
 }
 .drop-down-menu div:hover{
   background-color: rgba(3,3,3,0.6);
