@@ -3,7 +3,7 @@
     <main>
       <agile>
         <div class="slide" v-for="(item, index) in ImgData" :key="index">
-          <img :src="item" alt="..">
+          <img :src="require(`../assets/${item}`)" alt="..">
         </div>
       </agile>
     </main>
@@ -20,9 +20,16 @@ export default {
   data () {
     return {
       ImgData: [
-        'https://wallpaperaccess.com/full/2587632.jpg',
-        'https://i.pinimg.com/originals/3e/1e/f6/3e1ef6a39bc4848067fc6e043adae917.jpg',
-        'https://cdn.hipwallpaper.com/i/22/57/uU5ibV.jpg',
+          'depo-1.jpg',
+          'depo-2.jpg',
+          'indestury.jpg',
+          'indestury-2.jpg',
+          'indestury-4.jpg',
+          'ocak-2.jpg',
+          'ocak-3.jpg',
+        // 'https://wallpaperaccess.com/full/2587632.jpg',
+        // 'https://i.pinimg.com/originals/3e/1e/f6/3e1ef6a39bc4848067fc6e043adae917.jpg',
+        // 'https://cdn.hipwallpaper.com/i/22/57/uU5ibV.jpg',
       ]
     }
   }
@@ -121,6 +128,7 @@ img {
   }
   img {
     width: 100%;
+    object-fit: cover;
   }
 }
 

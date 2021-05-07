@@ -4,11 +4,8 @@
       <img :src="product.url" alt="..">
     </div>
     <div class="description">
-      <hr>
-      <AttributeValue :name="`${$store.getters.getLangItem('brand')} :`" :value="product.brand" />
-      <hr>
-      <AttributeValue :name="`${$store.getters.getLangItem('code')} :`" :value="product.code" />
-      <hr>
+      <AttributeValue :value="product.brand" />
+      <AttributeValue :value="product.code" />
     </div>
     <img :src="product.largeImageUrl" alt="" @click="changeSize" :class="isFullScreen ? 'large-image' : 'full-screen-image'">
   </div>
@@ -38,28 +35,19 @@ export default {
 <style scoped>
 .product {
   display: grid;
-  margin-bottom: 8vh;
-  border: 2px solid #ccc;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 10px 10px #ccc;
-  transition: 0.3s;
+  margin-bottom: 2vh;
 }
-.product:hover{
-  box-shadow: 0 10px 20px #ccc;
-}
+
 img {
-  height: 30vh;
-  width: 30vh;
+  height: 45vh;
+  width: 45vh;
   cursor: pointer;
-}
-hr{
-  width: 100%;
+  object-fit: cover;
 }
 .description {
-  padding: 10px;
   display: grid;
-  justify-items: start;
+  justify-items: center;
+  grid-template-rows: repeat(2, auto);
 }
 .full-screen-image {
   object-fit: fill;
@@ -68,9 +56,9 @@ hr{
   top: 0;
   left: 0;
   right: 0;
-  height: 80%;
-  width: 70%;
-  margin: 10vh auto;
+  height: 85%;
+  width: 78%;
+  margin: 8vh auto;
   cursor: pointer;
 }
 

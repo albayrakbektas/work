@@ -106,20 +106,21 @@ export default {
 button {
   background-color: #FFCE00;
   cursor: pointer;
-  height: 5vh;
-  width: 40vw;
+  height: 8vh;
+  width: 50vw;
   margin: 6vh auto 5vh;
   font-size: 30px !important;
 }
 a {
   color: #FFCE00;
   font-weight: bold;
+  font-size: 1.2rem;
 }
 a:hover {
   font-size: 1.2rem;
 }
 .attr{
-  margin: 50px 0;
+  margin: 20px 0;
 }
 @media (min-width: 990px) {
   .about {
@@ -151,6 +152,9 @@ a:hover {
   button {
     height: 80%;
     width: 16vw;
+  }
+  .attr {
+    margin: 7rem 0;
   }
 }
 </style>

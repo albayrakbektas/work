@@ -1,7 +1,7 @@
 <template>
   <div class="markets">
     <div class="icon-container">
-      <router-link class="icon-radius-container" to="/sectors/tourism">
+      <router-link class="icon-radius-container" to="/sectors/building">
         <div class="icons">
         <span class="material-icons">
           carpenter
@@ -11,7 +11,7 @@
           {{$store.getters.getLangItem('industrial')}}
         </div>
       </router-link>
-      <router-link class="icon-radius-container" to="/sectors/tourism">
+      <router-link class="icon-radius-container" to="/sectors/building">
         <div class="icons">
         <span class="material-icons">
           precision_manufacturing

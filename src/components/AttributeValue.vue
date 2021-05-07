@@ -21,12 +21,16 @@ export default {
 
 <style scoped>
 .attribute {
-  font-size: 25px;
-  width: 100%;
-  padding: 5px;
+  font-size: 16px;
+  max-width: 40vh;
   display: grid;
-  grid-template-columns: auto 1fr;
-  grid-gap: 1rem;
+  grid-template-columns: auto auto;
+  justify-items: center;
+}
+.attribute-value {
+  max-width: 30vh;
+  word-wrap: break-word;
+  text-align: center;
 }
 .value{
   text-align: start;

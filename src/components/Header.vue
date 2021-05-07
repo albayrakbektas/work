@@ -24,7 +24,7 @@
           <div class="drop-down-menu" v-if="isMenu">
 
             <div class="rotues" v-for="(item,index) in sectorList" :key="index">
-              <router-link class="routes" :to="`/sectors${item.path}`" @click="location.reload()">
+              <router-link class="routes" :to="`/sectors${item.path}`" @click="changeSector">
                 {{item.name[$store.state.currentLanguage]}}
               </router-link>
             </div>
@@ -69,10 +69,16 @@ export default {
     toggle () {
       this.$store.state.navIsOpen = !this.$store.state.navIsOpen
     },
+    changeSector () {
+      window.location.reload(true)
+    },
     setLanguage(lang) {
       localStorage.setItem('language', lang)
       location.reload()
     },
+  },
+  watch: {
+
   },
   computed: {
     isHomePage () {
